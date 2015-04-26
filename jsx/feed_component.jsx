@@ -21,12 +21,12 @@
     onInputKeyPress(e){
       if(e.which == 13){
         var tweet = e.target.value;
-        saveTweet(tweet);
+        this.saveTweet(tweet);
         var $div = this.createTweetDiv(tweet);
         this.renderTweet($div);
       }
     },
-    saveTweet(){
+    saveTweet(tweet){
       milkcocoa.dataStore("tweet").push({content:tweet, user: this.username()});
     },
     observeTweet(){
