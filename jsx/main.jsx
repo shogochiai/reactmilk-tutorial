@@ -3,7 +3,9 @@
     var isLoggedIn = (err == null);
     if(isLoggedIn){
       milkcocoa.dataStore("tweets").query({}).done((tweets)=>{
-        React.render(<FEED tweets={tweets} user={user} />, document.body);
+        milkcocoa.dataStore(`notifications/${user.password.email.split("@")[0]}`).query({}).done(notifications=>{
+          React.render(<FEED tweets={tweets} user={user} notifications={notifications} />, document.body);
+        });
       });
     } else {
       React.render(<LP />, document.body);
