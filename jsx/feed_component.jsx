@@ -86,7 +86,7 @@
         len--;
         $notifier.innerHTML = len;
       });
-    },
+    }
 
   });
 

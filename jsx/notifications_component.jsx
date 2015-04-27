@@ -35,12 +35,3 @@
   global.NOTIFICATIONS = NOTIFICATIONS;
   return global;
 }(window));
-
-
-/*
-        var $li = docuemnt.createElement("li");
-        $li.innerHTML = `${data.content}が${data.user}から届きました`;
-        $li.setAttribute("id", data.id);
-        document.getElementById("notification_list").appendChild($li);
-
-*/
