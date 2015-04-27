@@ -8,14 +8,14 @@
   float: right;
   margin-top: 19px;
   margin-right: 50px;
-}}
-
-#notification_list {
-  display: none;
 }
 
-.active {
-  display: block;
+#notification{
+  float: right;
+  margin-top: 19px;
+  margin-right: 50px;
+  color: gray;
+  font-size: 9px;
 }
 
 .tweet_owner {

@@ -1,7 +1,6 @@
 (function(global){
   var FEED = React.createClass({
     render(){
-      this.observeTweet();
       var tweets = this.props.tweets;
       return (<div id="feed">
         <div id="notifier" onClick={this.onClickNotifier}>{this.props.notifications.length}</div>
@@ -72,17 +71,20 @@
       location.reload();
     },
     onClickNotifier(){
-      document.getElementById("notification_list").setAttribute("class","active");
+      document.getElementById("notification").setAttribute("style","display:block;");
     },
-    observeNotifier(){
-      var ds_notification = milkcocoa.dataStore(`notifications/${this.props.username}`);
-      var len = this.props.notification.length;
+    observeNotifier(user){
+      var ds_notification = milkcocoa.dataStore(`notifications/${user}`);
+      var len = this.props.notifications.length;
       var $notifier = document.getElementById("notifier");
       ds_notification.on("set", data=>{
-        $notifier.innerHTML = len + 1;
+        len++;
+        $notifier.innerHTML = len;
+
       });
       ds_notification.on("remove", data=>{
-        $notifier.innerHTML = len + 1;
+        len--;
+        $notifier.innerHTML = len;
       });
     },
 

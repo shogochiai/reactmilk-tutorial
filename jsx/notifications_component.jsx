@@ -2,11 +2,11 @@
   var NOTIFICATIONS = React.createClass({
     render(){
       this.observeNotification();
-      return (<div id="notification">
+      return (<div id="notification" style={{display: "none"}}>
         <ul id="notification_list">
           {
             this.props.notifications.map(notification=>{
-              return <li onClick={this.onNotificationClick} key={notification.id}>{notification.content}</li>;
+              return <li onClick={this.onNotificationClick} key={notification.id} id={notification.id}>{notification.content}</li>;
             })
           }
         </ul>
@@ -14,13 +14,16 @@
     },
     observeNotification(){
       var ds_notification = milkcocoa.dataStore(`notifications/${this.props.username}`);
-      var $nList = document.getElementById("notification_list");
 
       ds_notification.on("set", data=>{
-        $nList.appendChild(<p>{data.value.content}</p>);
+        var $li = document.createElement("li");
+        $li.innerHTML = data.value.content;
+        $li.setAttribute("id", data.id);
+        $li.addEventListener("click", this.onNotificationClick);
+        document.getElementById("notification_list").appendChild($li);
       });
       ds_notification.on("remove", data=>{
-        console.log(data);
+        document.getElementById(data.id).remove();
       });
     },
     onNotificationClick(e){
